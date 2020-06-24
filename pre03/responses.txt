@@ -1,0 +1,21 @@
+//1. What is the output of the following program? Be precise about where there are spaces and where there are newlines.
+
+The output is this:
+
+"No, I wug."
+"You wugga wug."
+"I wug."
+
+The new lines are intentional because each println statement prints on a new line
+
+
+
+//2. Draw a stack diagram that shows the state of the program the first time ping is invoked.
+
+(main) --> (zoop) --> (baffle) --> (ping)
+
+
+
+//3. What happens if you invoke baffle(); at the end of the ping method? (We will see why in the next chapter.)
+
+Infinite loop because of a circular reference, each method calling on the other without a stopping point
