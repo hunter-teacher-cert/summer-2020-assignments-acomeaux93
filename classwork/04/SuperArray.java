@@ -47,6 +47,7 @@ public class SuperArray {
 
   public int getSize(){
     return this.numberElements;
+    
   }
 
   public static void main(String[] args) {
