@@ -17,7 +17,7 @@ class Life{
     	char[][] board = new char[rows][cols];
     	for (int r = 0; r < rows; r++) {
     	    for (int c = 0; c < cols; c++) {
-    		board[r][c] = '$';
+    		      board[r][c] = '$';
     	    }
     	}
     	return board;
@@ -50,6 +50,7 @@ class Life{
       set the cell (r,c) to value
     */
     public static void setCell(char[][] board, int r, int c, char val){
+      //in bounds check
     	if (r>=0 && r<board.length && c>=0 && c<board[r].length){
     	    board[r][c] = val;
     	}
@@ -63,7 +64,30 @@ class Life{
                     to board[r+1][c+1]
     */
     public static int countNeighbours(char[][] board, int r, int c){
-	     return 0;
+	     int count = 0;
+
+       //borders
+       int startRow, startCol;
+       if (r == 0) {
+         startRow = 0;
+       } else {
+         startRow = r -1;
+       }
+
+       if (c == 0) {
+         startCol = 0;
+       } else {
+         startCol = c - 1;
+       }
+
+       for (int row = startRow; row >= 0 && row < board.length && row <= r + 1; row++) {
+         for (int col = startCol; col >= 0 && col < board.length && col <= c + 1; col++) {
+           if(board[row][col] == 'X' && !(col==c && row==r)) {
+             count++;
+           }
+         }
+       }
+       return count;
     }
 
     /*
@@ -78,23 +102,42 @@ class Life{
 	// determine if board[r][c] is living or dead
 	//    if living and 2 3 neighbors then remain alive
 	//    if dead and 3 neighbors then become alive
-
-	    return ' ';
+      int count = countNeighbours(board, r, c);
+      if (board[r][c] == 'X') {
+        if (count == 2 || count == 3) {
+          return 'X';
+        } else {
+          return ' ';
+        }
+      } else {
+        if (count == 3) {
+          return 'X';
+        } else {
+          return ' ';
+        }
+      }
     }
     /*
       scan the board to generate a NEW board with the
       next generation
     */
-    public char[][] generateNextBoard(char[][] board){
+    public static char[][] generateNextBoard(char[][] board){
     	char newBoard[][] = new char[25][25];
     	// fill the new board
+      for (int r = 0; r < board.length; r++) {
+        for (int c = 0; c < board[r].length; c++) {
+          newBoard[r][c] = getNextGenCell(board, r, c);
+        }
+      }
     	return newBoard;
     }
 
     public static void main(String[] args) {
     	char[][] board;
     	board = createNewBoard(25,25);
-      board = initializeBoard(25,25);
+      //board = initializeBoard(25,25);
     	printBoard(board);
+      board = generateNextBoard(board);
+      printBoard(board);
     }
 }
