@@ -20,7 +20,7 @@ public class GridImage {
     System.out.println();
     diagonal(grid, 3, 6, 12, 255);
     print2d(grid);
-    
+
 
 
 
@@ -59,7 +59,7 @@ public class GridImage {
       for (int c=0; c < d2[r].length; c++) {
         if (d2[r][c] == 0) {
           d2[r][c] = 255;
-        else {
+        } else {
           d2[r][c] = 0;
         }
       }
