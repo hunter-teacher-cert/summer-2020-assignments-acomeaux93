@@ -13,7 +13,16 @@ public class GridImage {
     print2d(grid);
     System.out.println();
     rowPop(grid, 3, 9);
+    print2d(grid);
     System.out.println();
+    colPop(grid, 9, 3);
+    print2d(grid);
+    System.out.println();
+    diagonal(grid, 3, 6, 12, 255);
+    print2d(grid);
+    
+
+
 
   }
 
@@ -46,15 +55,37 @@ public class GridImage {
   }//end rowPop
 
   public static void invert(int[][] d2) {
+    for (int r=0; r < d2.length; r++) {
+      for (int c=0; c < d2[r].length; c++) {
+        if (d2[r][c] == 0) {
+          d2[r][c] = 255;
+        else {
+          d2[r][c] = 0;
+        }
+      }
+    }
   }//end invert
 
-  /*
-    0: up + left
-    1: up + right
-    2: down + left
-    3: down + right
-   */
   public static void diagonal(int[][] d2, int r, int c, int direction, int value) {
+
+    int rowGo = -1;
+    int columnGo = -1;
+
+    if (direction == 1) {
+      columnGo = 1;
+    } else if (direction == 2) {
+      rowGo = 1;
+    } else if (direction == 3) {
+      rowGo = 1;
+      columnGo = 1;
+    }
+
+    //do while you're still in-bounds
+    while (r >= 0 && r < d2.length && c >= 0 && c < d2[r].length) {
+      d2[r][c] = value;
+      r = r + rowGo;
+      c = c + columnGo;
+    }
   }//end diagonal
 
 }
