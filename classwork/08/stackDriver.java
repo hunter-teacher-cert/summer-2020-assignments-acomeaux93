@@ -19,9 +19,11 @@ public static void main(String[] args) {
 
   //Test pop
   System.out.println("Test pop stack and print:");
+  System.out.println(s.pop());
 
   //Test top
   System.out.println("Test top stack and print:");
+  System.out.println(s.top());
 
 
   //Test size
