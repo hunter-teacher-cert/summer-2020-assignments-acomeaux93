@@ -57,5 +57,26 @@ public class Time{
 		return String.format("%02d:%02d:%04.1f\n", this.hour, this.minute, this.second);
   }
 
-  Time time = new Time(8, 40, 40.00);
+  public boolean equals(Time here) {
+    return this.hour == here.hour && this.minute == here.minute && this.second == here.second;
+  }
+
+  public static Time add(Time t1, Time t2) {
+    Time sum = new Time();
+    sum.hour = t1.hour + t2.hour;
+    sum.minute = t1.minute + t2.minute;
+    sum.second = t1.second + t2.second;
+
+    //Changing secs to min and min to hour math
+    if (sum.second >= 60.0) {
+      sum.second = sum.second - 60.0;
+      sum.minute = sum.minute + 1;
+    }
+    if (sum.minute >= 60) {
+      sum.minute = sum.minute - 60;
+      sum.hour = sum.hour + 1;
+    }
+
+    return sum;
+  }
 }
