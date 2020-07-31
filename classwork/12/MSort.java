@@ -62,7 +62,10 @@ public class MSort
                                          ArrayList<Integer> b) {
     //setup variables
     //   make a new ArrayList
+    ArrayList<Integer> mergeMe = new ArrayList<Integer>();
     //   indices for each input
+    int i1 = 0;
+    int i2 = 0;
 
     //while both indices are less than their respective lengths
 
@@ -71,12 +74,29 @@ public class MSort
     //add the smaller value to the new list
 
     //update index we took the value from
+    while (i1 < a.size() && i2 < b.size()) {
+      if((int)a.get(i1) < (int)b.get(i2)) {
+        mergeMe.add((int)a.get(i1));
+        i1++;
+      } else {
+        mergeMe.add((int)b.get(i2));
+        i2++;
+      }
+    }
+
+
 
     //loop ends: one index is past the end of the list
     //copy the values from the reamining list over
-
+    while(i1 < a.size()) {
+      mergeMe.add((int)a.get(i1++));
+    }
+    while(i2 < b.size()) {
+      mergeMe.add((int)b.get(i2));
+      i2++;
+    }
     //return the new list
-    return null;
+    return mergeMe;
   }//merge
 
 
